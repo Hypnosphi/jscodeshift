@@ -1,7 +1,7 @@
 # jscodeshift [![Build Status](https://travis-ci.org/facebook/jscodeshift.svg?branch=master)](https://travis-ci.org/facebook/jscodeshift)
 
 jscodeshift is a toolkit for running codemods over multiple JavaScript or 
-Typescript files.
+TypeScript files.
 It provides:
 
 - A runner, which executes the provided transform for each file passed to it.
@@ -85,7 +85,7 @@ module.exports = function(fileInfo, api, options) {
 };
 ```
 
-As of v0.6.1, this module can also be written in Typescript.
+As of v0.6.1, this module can also be written in TypeScript.
 
 ### Arguments
 
@@ -444,10 +444,6 @@ const output = applyTransform(transform, transformOptions, 'input');
 ### Recipes
 
 - [Retain leading comment(s) in file when replacing/removing first statement](recipes/retain-first-comment.md)
-
-### Support
-
-* Discord - [Reactiflux](http://www.reactiflux.com/)
 
 [npm]: https://www.npmjs.com/
 [Mozilla Parser API]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API

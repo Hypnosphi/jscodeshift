@@ -1,10 +1,8 @@
-/*
- *  Copyright (c) Facebook, Inc. and its affiliates. All rights reserved.
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- *  This source code is licensed under the BSD-style license found in the
- *  LICENSE file in the root directory of this source tree. An additional grant
- *  of patent rights can be found in the PATENTS file in the same directory.
- *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 function throwError(exitCode, message, helpText) {
@@ -171,6 +169,13 @@ function parse(options, args=process.argv.slice(2)) {
                 value === null &&
                 isOption(args[i+1]),
           list: isList,
+          process(value) {
+            // Try to parse values as JSON to be compatible with nomnom
+            try {
+              return JSON.parse(value);
+            } catch(_e) {}
+            return value;
+          },
         };
 
         if (isList) {
@@ -195,7 +200,7 @@ function parse(options, args=process.argv.slice(2)) {
         }
         parsedOptions[option.key] = value;
       } else {
-        if (value === null && i <  args.length - 1 &&  !isOption(args[i+1])) {
+        if (value === null && i <  args.length - 1 && !isOption(args[i+1])) {
           // consume next value
           value = args[i+1];
           i += 1;
@@ -240,7 +245,7 @@ function parse(options, args=process.argv.slice(2)) {
 
 module.exports = {
   /**
-   * `options` is an object of object. Each option can have the following
+   * `options` is an object of objects. Each option can have the following
    * properties:
    *
    *   - full: The name of the option to be used in the command line (if
